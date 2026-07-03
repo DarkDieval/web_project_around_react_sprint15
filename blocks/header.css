@@ -1,0 +1,84 @@
+.header {
+  max-width: 880px;
+  width: 100%;
+  margin: auto;
+  margin-top: 45px;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+  .header {
+    max-width: 870px;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+    box-sizing: border-box;
+  }
+
+  /* La clase 'main' en CSS si no se usa en HTML como clase puede ser ambigua,
+     si se refiere al tag <main>, debe ser solo 'main'.
+     Asumo que aquí se refiere al tag <main> */
+  .main {
+    box-sizing: border-box;
+  }
+
+  /* Corregido de main__profile-container a profile */
+  .profile {
+    box-sizing: border-box;
+  }
+
+  /* Corregido de main__button-add a profile__button--add */
+  .profile__button--add {
+    width: 120px;
+    height: 45px;
+    font-size: 20px;
+    margin-left: 92px;
+  }
+
+  /* Corregido de main__places__grid a places__grid */
+  .places__grid {
+    gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    max-width: 700px;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    margin-left: 25px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .header {
+    max-width: 280px;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (min-width: 321px) and (max-width: 543px) {
+  .header {
+    max-width: 280px;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
+    max-width: 280px;
+    margin-top: 35px;
+    margin-bottom: 30px;
+    margin-left: 0px;
+    box-sizing: border-box;
+  }
+}
