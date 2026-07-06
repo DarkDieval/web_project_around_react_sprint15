@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy-sprint14": "gh-pages -d dist --remote sprint14"
   },
   "dependencies": {
     "react": "^19.2.7",
