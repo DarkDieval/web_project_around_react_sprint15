@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  base: "/web_project_around_react/",
+  base: "/web_project_around_react_sprint14/",
   plugins: [react()],
   server: {
     port: 3000,
