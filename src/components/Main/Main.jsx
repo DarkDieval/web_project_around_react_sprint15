@@ -5,7 +5,6 @@ import EditProfile from "./components/Popup/forms/EditProfile";
 import EditAvatar from "./components/Popup/forms/EditAvatar";
 import Card from "./components/Card/Card";
 
-// Datos ficticios para las tarjetas
 const initialCards = [
   {
     _id: 1,
@@ -67,7 +66,6 @@ export default function Main() {
     setPopup(null);
   }
 
-  // Manejador para abrir la imagen emergente
   function handleCardClick(card) {
     const imagePopup = {
       title: "",
