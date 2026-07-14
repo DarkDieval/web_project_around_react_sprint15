@@ -1,33 +1,32 @@
-# Around the U.S. – Proyecto React
+# Around the U.S. – React
 
-Este es un sitio web responsive de página única construido con React. Muestra un perfil de usuario y tarjetas con lugares emblemáticos de Estados Unidos. Los usuarios pueden ver las tarjetas, dar "me gusta" y abrir una vista ampliada de la imagen. El proyecto es el resultado del Sprint 14 del curso Practicum de Yandex, donde se migró un sitio estático a React.
+Sitio web responsive para compartir lugares emblemáticos. Construido con React y conectado a una API real.
 
 ## 🚀 Demo en vivo
 
 🔗 [Ver demo](https://darkdieval.github.io/web_project_around_react/)
 
-> **Nota:** La primera carga puede tardar unos segundos.
+## ✨ Funcionalidades
 
-## ✨ Características
+- Ver tarjetas con imágenes de lugares.
+- Dar "me gusta" a las tarjetas.
+- Eliminar tarjetas propias.
+- Editar perfil (nombre y descripción).
+- Cambiar foto de perfil.
+- Agregar nuevas tarjetas.
 
-- **Diseño responsive** – se adapta a pantallas desde 320px hasta 1280px.
-- **Tarjetas dinámicas** – usando datos de prueba (mock data).
-- **Ventanas emergentes (popups)** – para agregar tarjetas, editar perfil y cambiar avatar.
-- **Botones de like y eliminar** – interacción visual (sin backend aún).
-- **Componentes modulares** – Header, Main, Footer, Card, Popup y formularios.
-
-## 🛠️ Tecnologías utilizadas
+## 🛠️ Tecnologías
 
 - React 19
-- Vite (bundler)
-- CSS3 con metodología BEM
-- Git y GitHub Pages (despliegue)
+- Vite
+- CSS (BEM)
+- API REST
 
-## 📦 Instalación y configuración local
-
-Clona el repositorio:
+## 📦 Instalación
 
 ```bash
 git clone https://github.com/DarkDieval/web_project_around_react.git
 cd web_project_around_react
+npm install
+npm run dev
 ```
