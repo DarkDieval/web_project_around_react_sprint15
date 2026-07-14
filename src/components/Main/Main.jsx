@@ -5,16 +5,15 @@ import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/forms/NewCard";
 import EditProfile from "./components/Popup/forms/EditProfile";
 import EditAvatar from "./components/Popup/forms/EditAvatar";
-import api from "../../utils/api";
 
-export default function Main() {
-  const [cards, setCards] = useState([]);
-
+export default function Main({ cards, onCardLike, onCardDelete, onAddCard }) {
   const { currentUser } = useContext(CurrentUserContext);
-
   const [popup, setPopup] = useState(null);
 
-  const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
+  const newCardPopup = {
+    title: "Nuevo lugar",
+    children: <NewCard onAddCard={onAddCard} onClose={handleClosePopup} />,
+  };
   const editProfilePopup = {
     title: "Editar perfil",
     children: <EditProfile onClose={handleClosePopup} />,
@@ -45,15 +44,9 @@ export default function Main() {
     handleOpenPopup(imagePopup);
   }
 
-  useEffect(() => {
-    api
-      .getCardList()
-      .then((cardData) => setCards(cardData))
-      .catch((error) => console.error("Error al cargar tarjetas:", error));
-  }, []);
-
   return (
     <main className="main">
+      {/* Perfil */}
       <div className="profile">
         <div className="profile__image-container">
           <img
@@ -73,8 +66,8 @@ export default function Main() {
         </div>
 
         <div className="profile__info-container">
-          <p className="profile__name">{currentUser?.name}</p>{" "}
-          <p className="profile__job">{currentUser?.about}</p>{" "}
+          <p className="profile__name">{currentUser?.name}</p>
+          <p className="profile__job">{currentUser?.about}</p>
           <button
             className="profile__button profile__button-edit"
             type="button"
@@ -93,14 +86,22 @@ export default function Main() {
         </button>
       </div>
 
+      {/* Grid de tarjetas */}
       <section className="places">
         <ul className="places__grid">
           {cards.map((card) => (
-            <Card key={card._id} card={card} onCardClick={handleCardClick} />
+            <Card
+              key={card._id}
+              card={card}
+              onCardClick={handleCardClick}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+            />
           ))}
         </ul>
       </section>
 
+      {/* Popups */}
       {popup && (
         <Popup onClose={handleClosePopup} title={popup.title}>
           {popup.children}

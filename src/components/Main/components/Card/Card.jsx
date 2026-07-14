@@ -7,6 +7,16 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     (like) => like._id === currentUser?._id,
   );
 
+  const handleLikeClick = (e) => {
+    e.stopPropagation();
+    onCardLike(card);
+  };
+
+  const handleDeleteClick = (e) => {
+    e.stopPropagation();
+    onCardDelete(card);
+  };
+
   return (
     <li className="places__card">
       <img
@@ -22,19 +32,13 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
             isLiked ? "places__card-like-button_active" : ""
           }`}
           type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onCardLike(card);
-          }}
+          onClick={handleLikeClick}
         ></button>
       </div>
       <button
         className="places__card-delete-button"
         type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          onCardDelete(card);
-        }}
+        onClick={handleDeleteClick}
       ></button>
     </li>
   );
