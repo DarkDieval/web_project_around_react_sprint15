@@ -3,12 +3,17 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Card from "./components/Card/Card";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/forms/NewCard";
+import ImagePopup from "./components/Popup/ImagePopup/ImagePopup";
+import RemoveCard from "./components/Popup/RemoveCard/RemoveCard";
 import EditProfile from "./components/Popup/forms/EditProfile";
 import EditAvatar from "./components/Popup/forms/EditAvatar";
 
 export default function Main({ cards, onCardLike, onCardDelete, onAddCard }) {
   const { currentUser } = useContext(CurrentUserContext);
+
   const [popup, setPopup] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [cardToDelete, setCardToDelete] = useState(null);
 
   const newCardPopup = {
     title: "Nuevo lugar",
@@ -32,16 +37,16 @@ export default function Main({ cards, onCardLike, onCardDelete, onAddCard }) {
   }
 
   function handleCardClick(card) {
-    const imagePopup = {
-      title: "",
-      children: (
-        <div className="popup__container_image">
-          <img className="popup__image" src={card.link} alt={card.name} />
-          <h2 className="popup__image-title">{card.name}</h2>
-        </div>
-      ),
-    };
-    handleOpenPopup(imagePopup);
+    setSelectedCard(card);
+  }
+
+  function handleDeleteClick(card) {
+    setCardToDelete(card);
+  }
+
+  function handleConfirmDelete(card) {
+    onCardDelete(card);
+    setCardToDelete(null);
   }
 
   return (
@@ -86,7 +91,6 @@ export default function Main({ cards, onCardLike, onCardDelete, onAddCard }) {
         </button>
       </div>
 
-      {/* Grid de tarjetas */}
       <section className="places">
         <ul className="places__grid">
           {cards.map((card) => (
@@ -95,17 +99,28 @@ export default function Main({ cards, onCardLike, onCardDelete, onAddCard }) {
               card={card}
               onCardClick={handleCardClick}
               onCardLike={onCardLike}
-              onCardDelete={onCardDelete}
+              onCardDelete={handleDeleteClick}
             />
           ))}
         </ul>
       </section>
 
-      {/* Popups */}
       {popup && (
         <Popup onClose={handleClosePopup} title={popup.title}>
           {popup.children}
         </Popup>
+      )}
+
+      {selectedCard && (
+        <ImagePopup card={selectedCard} onClose={() => setSelectedCard(null)} />
+      )}
+
+      {cardToDelete && (
+        <RemoveCard
+          card={cardToDelete}
+          onConfirm={handleConfirmDelete}
+          onClose={() => setCardToDelete(null)}
+        />
       )}
     </main>
   );
