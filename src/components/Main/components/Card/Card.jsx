@@ -7,9 +7,6 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
     (like) => like._id === currentUser?._id,
   );
 
-  // Depuración: log para ver si isLiked se actualiza
-  console.log("❤️ isLiked:", isLiked, "cardId:", card._id);
-
   return (
     <li className="places__card">
       <img

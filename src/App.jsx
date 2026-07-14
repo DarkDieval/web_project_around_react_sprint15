@@ -6,22 +6,28 @@ import Footer from "./components/Footer/Footer";
 import api from "./utils/api";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
     api
       .getUserInfo()
       .then((userData) => {
-        console.log("👤 Usuario cargado:", userData);
         setCurrentUser(userData);
       })
-      .catch((error) => {
-        console.error("Error al cargar usuario:", error);
-      });
+      .catch((error) => console.error("Error:", error));
   }, []);
 
+  const handleUpdateUser = (data) => {
+    api
+      .setUserInfo(data)
+      .then((newUserData) => {
+        setCurrentUser(newUserData);
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
       <div className="page">
         <Header />
         <Main />
