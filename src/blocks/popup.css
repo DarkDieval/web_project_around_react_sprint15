@@ -9,9 +9,8 @@
 .popup__image {
   max-width: 433px;
   max-height: 544px;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  width: 433px;
+  height: 544px;
 }
 
 .popup__image-title {
@@ -45,10 +44,10 @@
   cursor: pointer;
   position: absolute;
   top: -40px;
-  right: -35px;
+  right: -35px; /* ← siempre a la derecha, fuera */
   font-size: 40px;
   line-height: 1;
-  z-index: 10;
+  z-index: 10; /* para asegurar que esté por encima */
 }
 
 .popup__button_close:hover {
@@ -65,8 +64,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /*visibility: hidden;
-  opacity: 0;*/
+  visibility: hidden;
+  opacity: 0;
   transition:
     visibility 0.3s,
     opacity 0.3s ease-in-out;
@@ -109,11 +108,11 @@
   width: 100%;
   align-items: center;
   margin-left: 36px;
-  margin-bottom: 20px;
   border: none;
   border-bottom: 1px solid #c4c4c4;
   color: #000000;
   box-sizing: border-box;
+  margin-bottom: 20px;
 }
 
 .popup__input-about,
@@ -211,7 +210,6 @@
   }
 
   .popup__input {
-    margin-bottom: 20px;
     max-width: 260px;
     width: 100%;
   }
@@ -253,10 +251,8 @@
   }
 
   .popup__button_close {
-    width: 40px;
-    height: 40px;
     top: -35px;
-    left: 290px;
+    left: 270px;
     font-size: 26px;
   }
 
@@ -269,8 +265,10 @@
   }
 
   .popup__image {
-    max-width: 100%;
-    max-height: 80vh;
+    max-width: 300px;
+    max-height: 344px;
+    width: 300px;
+    height: 344px;
   }
 
   .popup__image-title {
@@ -309,17 +307,9 @@
   }
 
   .popup__button_close {
-    width: 40px;
-    height: 40px;
-    background-color: transparent;
-    color: #ffffff;
-    border: none;
-    cursor: pointer;
-    position: absolute;
-    top: -40px;
+    top: -35px;
     left: 270px;
-    font-size: 30px;
-    line-height: 1;
+    font-size: 26px;
   }
 
   .popup__container_image {
@@ -331,8 +321,10 @@
   }
 
   .popup__image {
-    max-width: 100%;
-    max-height: 80vh;
+    max-width: 300px;
+    max-height: 344px;
+    width: 300px;
+    height: 344px;
   }
 
   .popup__image-title {

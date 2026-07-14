@@ -1,50 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Card from "./components/Card/Card";
 import Popup from "./components/Popup/Popup";
 import NewCard from "./components/Popup/forms/NewCard";
 import EditProfile from "./components/Popup/forms/EditProfile";
 import EditAvatar from "./components/Popup/forms/EditAvatar";
-import Card from "./components/Card/Card";
 import avatar from "../../images/JacquesCousteau.jpg";
-
-const initialCards = [
-  {
-    _id: 1,
-    name: "Yosemite Valley",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-  },
-  {
-    _id: 2,
-    name: "Lake Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-  },
-  {
-    _id: 3,
-    name: "Bald Mountains",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-  },
-  {
-    _id: 4,
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-  },
-  {
-    _id: 5,
-    name: "Vanois National Park",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanois.jpg",
-  },
-  {
-    _id: 6,
-    name: "Lake Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-braies.jpg",
-  },
-];
+import api from "../../utils/api";
 
 export default function Main() {
-  const [cards] = useState(initialCards);
+  const [cards, setCards] = useState([]);
+
   const [userData] = useState({
     name: "Jacques Cousteau",
     about: "Explorer",
   });
+
   const [popup, setPopup] = useState(null);
 
   const newCardPopup = { title: "Nuevo lugar", children: <NewCard /> };
@@ -78,8 +48,20 @@ export default function Main() {
     handleOpenPopup(imagePopup);
   }
 
+  useEffect(() => {
+    api
+      .getCardList()
+      .then((cardData) => {
+        setCards(cardData);
+      })
+      .catch((error) => {
+        console.error("Error al cargar tarjetas:", error);
+      });
+  }, []);
+
   return (
     <main className="main">
+      {/* Perfil */}
       <div className="profile">
         <div className="profile__image-container">
           <img className="profile__image" src={avatar} alt="Foto de perfil" />
