@@ -11,23 +11,28 @@ function App() {
   useEffect(() => {
     api
       .getUserInfo()
-      .then((userData) => {
-        setCurrentUser(userData);
-      })
+      .then((userData) => setCurrentUser(userData))
       .catch((error) => console.error("Error:", error));
   }, []);
 
   const handleUpdateUser = (data) => {
     api
       .setUserInfo(data)
-      .then((newUserData) => {
-        setCurrentUser(newUserData);
-      })
+      .then((newUserData) => setCurrentUser(newUserData))
       .catch((error) => console.error("Error:", error));
   };
 
+  const handleUpdateAvatar = (data) => {
+    api
+      .setUserAvatar(data)
+      .then((newUserData) => setCurrentUser(newUserData))
+      .catch((error) => console.error("Error al actualizar avatar:", error));
+  };
+
   return (
-    <CurrentUserContext.Provider value={{ currentUser, handleUpdateUser }}>
+    <CurrentUserContext.Provider
+      value={{ currentUser, handleUpdateUser, handleUpdateAvatar }}
+    >
       <div className="page">
         <Header />
         <Main />

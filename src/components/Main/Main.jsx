@@ -21,7 +21,7 @@ export default function Main() {
   };
   const editAvatarPopup = {
     title: "Cambiar foto de perfil",
-    children: <EditAvatar />,
+    children: <EditAvatar onClose={handleClosePopup} />,
   };
 
   function handleOpenPopup(popupConfig) {
