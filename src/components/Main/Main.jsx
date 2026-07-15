@@ -93,15 +93,16 @@ export default function Main({ cards, onCardLike, onCardDelete, onAddCard }) {
 
       <section className="places">
         <ul className="places__grid">
-          {cards.map((card) => (
-            <Card
-              key={card._id}
-              card={card}
-              onCardClick={handleCardClick}
-              onCardLike={onCardLike}
-              onCardDelete={handleDeleteClick}
-            />
-          ))}
+          {Array.isArray(cards) &&
+            cards.map((card) => (
+              <Card
+                key={card._id}
+                card={card}
+                onCardClick={handleCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={handleDeleteClick}
+              />
+            ))}
         </ul>
       </section>
 

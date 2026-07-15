@@ -1,11 +1,5 @@
-import { useContext } from "react";
-import { CurrentUserContext } from "../../../../contexts/CurrentUserContext";
-
 function Card({ card, onCardClick, onCardLike, onCardDelete }) {
-  const currentUser = useContext(CurrentUserContext);
-  const isLiked = (card.likes || []).some(
-    (like) => like._id === currentUser?._id,
-  );
+  const isLiked = card.isLiked || false;
 
   const handleLikeClick = (e) => {
     e.stopPropagation();

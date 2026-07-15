@@ -44,10 +44,10 @@
   cursor: pointer;
   position: absolute;
   top: -40px;
-  right: -35px; /* ← siempre a la derecha, fuera */
+  right: -35px;
   font-size: 40px;
   line-height: 1;
-  z-index: 10; /* para asegurar que esté por encima */
+  z-index: 10;
 }
 
 .popup__button_close:hover {
@@ -160,6 +160,69 @@
 
 .popup__input-avatar {
   margin-top: 0;
+}
+
+.popup__content_type_confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 36px 20px;
+  box-sizing: border-box;
+}
+
+.popup__container:has(.popup__content_type_confirm) .popup__subtitle {
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.popup__text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #000000;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+.popup__text_sub {
+  font-size: 14px;
+  color: #999999;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.popup__content_type_confirm .popup__button_save {
+  margin-left: 0;
+  margin-top: 10px;
+  margin-bottom: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+.popup__button_cancel {
+  background: transparent;
+  border: none;
+  color: #999999;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 5px 0;
+  transition: color 0.2s ease;
+}
+
+.popup__button_cancel:hover {
+  color: #555555;
+}
+
+@media screen and (max-width: 544px) {
+  .popup__container .popup__content {
+    padding: 0 20px 20px;
+  }
 }
 
 @media screen and (max-width: 768px) and (max-width: 1024px) {

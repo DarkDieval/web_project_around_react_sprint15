@@ -20,6 +20,10 @@ function App() {
       );
   }, []);
 
+  useEffect(() => {
+    console.log("🔄 Main - cards actualizadas:", cards);
+  }, [cards]);
+
   const handleUpdateUser = (data) => {
     api
       .setUserInfo(data)
@@ -35,28 +39,26 @@ function App() {
   };
 
   const handleCardLike = (card) => {
-    const isLiked = (card.likes || []).some(
-      (like) => like._id === currentUser?._id,
-    );
+    const isLiked = card.isLiked || false;
+
     api
       .changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((prevCards) =>
-          prevCards.map((c) => (c._id === card._id ? newCard : c)),
+          prevCards.map((c) => {
+            if (c._id === card._id) {
+              const updatedLikes = newCard.isLiked
+                ? [...(c.likes || []), currentUser]
+                : (c.likes || []).filter(
+                    (like) => like._id !== currentUser._id,
+                  );
+              return { ...c, likes: updatedLikes, isLiked: newCard.isLiked };
+            }
+            return c;
+          }),
         );
       })
       .catch((err) => console.error("Error al dar/quitar like:", err));
-  };
-
-  const handleCardDelete = (card) => {
-    if (window.confirm("¿Estás seguro de que quieres eliminar esta tarjeta?")) {
-      api
-        .deleteCard(card._id)
-        .then(() => {
-          setCards((prevCards) => prevCards.filter((c) => c._id !== card._id));
-        })
-        .catch((err) => console.error("Error al eliminar tarjeta:", err));
-    }
   };
 
   const handleAddCard = (newCardData) => {
@@ -66,6 +68,15 @@ function App() {
         setCards((prevCards) => [newCard, ...prevCards]);
       })
       .catch((err) => console.error("Error al añadir tarjeta:", err));
+  };
+
+  const handleCardDelete = (card) => {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((prevCards) => prevCards.filter((c) => c._id !== card._id));
+      })
+      .catch((err) => console.error("Error al eliminar tarjeta:", err));
   };
 
   return (
